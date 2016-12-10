@@ -23,7 +23,7 @@ export class DepartmentsComponent implements OnInit {
     this.departmentService.getDepartments().then((departments) => this.departments = departments);
   }
 
-  openConfirmDeleteModal(confirmDeleteModal, department: Department) {
+  openConfirmDeleteModal(confirmDeleteModal, department: Department): void {
     this.department = department;
     this.modalService.open(confirmDeleteModal).result.then((result) => {
       if ('yes' === result) {
@@ -35,7 +35,7 @@ export class DepartmentsComponent implements OnInit {
     });
   }
 
-  addDepartment() {
+  addDepartment(): void {
     this.departmentService.addDepartment({name: this.departmentName});
     this.departmentName = '';
   }
