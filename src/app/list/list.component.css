@@ -11,9 +11,6 @@
 .disabled {
     text-decoration: line-through;
 }
-.active-item {
-    font-weight: bold;
-}
 .list-controls {
     position: fixed;
     top: 0;
@@ -25,4 +22,7 @@
 }
 .grocery-list {
     padding-top: 7rem;
+}
+.list-group-item {
+    font-size: 200%;
 }

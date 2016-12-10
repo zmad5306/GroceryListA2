@@ -25,6 +25,14 @@ export class DepartmentService {
   addDepartment(department: Department): Promise<void> {
     this.departments.push(department);
     return Promise.resolve();
-  } 
+  }
+
+  removeDepartment(department: Department): Promise<void> {
+    let index = this.departments.indexOf(department);
+    if (index > -1) {
+      this.departments.splice(index, 1);
+    }
+    return Promise.resolve();
+  }
 
 }

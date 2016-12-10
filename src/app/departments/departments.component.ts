@@ -27,10 +27,7 @@ export class DepartmentsComponent implements OnInit {
     this.department = department;
     this.modalService.open(confirmDeleteModal).result.then((result) => {
       if ('yes' === result) {
-        let index = this.departments.indexOf(this.department);
-        if (index > -1) {
-          this.departments.splice(index, 1);
-        }
+        this.departmentService.removeDepartment(this.department);
       }
       this.department = undefined;
     }, (reason) => {

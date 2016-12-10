@@ -10,3 +10,6 @@
 .department-list {
     padding-top: 3.5rem;
 }
+.list-group-item {
+    font-size: 200%;
+}
