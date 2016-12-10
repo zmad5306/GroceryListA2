@@ -2,110 +2,57 @@ import { Component, OnInit } from '@angular/core';
 
 import { Department } from '../department';
 import { Item } from '../item';
-
-const DEPTS: Department[] = [
-  {name: 'Produce'},
-  {name: 'Frozen'},
-  {name: 'Bread'},
-  {name: 'Coffee/Tea'},
-  {name: 'Meat'},
-  {name: 'Dairy'}
-];
+import { DepartmentService } from '../department.service';
 
 const LIST = new Map<Department, Item[]>();
-
-LIST.set(DEPTS[0], [
-  {department: DEPTS[0], name: 'carrots', deleted: false},
-  {department: DEPTS[0], name: 'carrots', deleted: false},
-  {department: DEPTS[0], name: 'carrots', deleted: false},
-  {department: DEPTS[0], name: 'carrots', deleted: false},
-  {department: DEPTS[0], name: 'carrots', deleted: false},
-  {department: DEPTS[0], name: 'carrots', deleted: false}
-]);
-
-LIST.set(DEPTS[1], [
-  {department: DEPTS[1], name: 'beans', deleted: false},
-  {department: DEPTS[1], name: 'beans', deleted: false},
-  {department: DEPTS[1], name: 'beans', deleted: false},
-  {department: DEPTS[1], name: 'beans', deleted: false},
-  {department: DEPTS[1], name: 'beans', deleted: false},
-  {department: DEPTS[1], name: 'beans', deleted: false}
-]);
-
-LIST.set(DEPTS[2], [
-  {department: DEPTS[2], name: 'taters', deleted: false},
-  {department: DEPTS[2], name: 'taters', deleted: false},
-  {department: DEPTS[2], name: 'taters', deleted: false},
-  {department: DEPTS[2], name: 'taters', deleted: false},
-  {department: DEPTS[2], name: 'taters', deleted: false},
-  {department: DEPTS[2], name: 'taters', deleted: false}
-]);
-
-LIST.set(DEPTS[3], [
-  {department: DEPTS[3], name: 'steak', deleted: false},
-  {department: DEPTS[3], name: 'steak', deleted: false},
-  {department: DEPTS[3], name: 'steak', deleted: false},
-  {department: DEPTS[3], name: 'steak', deleted: false},
-  {department: DEPTS[3], name: 'steak', deleted: false},
-  {department: DEPTS[3], name: 'steak', deleted: false}
-]);
-
-LIST.set(DEPTS[4], [
-  {department: DEPTS[4], name: 'chicken', deleted: false},
-  {department: DEPTS[4], name: 'chicken', deleted: false},
-  {department: DEPTS[4], name: 'chicken', deleted: false},
-  {department: DEPTS[4], name: 'chicken', deleted: false},
-  {department: DEPTS[4], name: 'chicken', deleted: false},
-  {department: DEPTS[4], name: 'chicken', deleted: false}
-]);
-
-LIST.set(DEPTS[5], [
-  {department: DEPTS[5], name: 'ice cream', deleted: false},
-  {department: DEPTS[5], name: 'ice cream', deleted: false},
-  {department: DEPTS[5], name: 'ice cream', deleted: false},
-  {department: DEPTS[5], name: 'ice cream', deleted: false},
-  {department: DEPTS[5], name: 'ice cream', deleted: false},
-  {department: DEPTS[5], name: 'ice cream', deleted: false}
-]);
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
+  providers: [DepartmentService]
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  department: Department = DEPTS[0];
-  departments: Department[] = DEPTS;
+  department: Department;
+  departments: Department[];
   list: Map<Department, Item[]> = LIST;
   itemName: string;
 
+  constructor(private departmentService: DepartmentService) { }
+
+  ngOnInit() {
+    this.departmentService.getDepartments().then((departments) => {
+      this.departments = departments;
+      if (this.departments.length > 0) {
+        this.department = departments[0];
+        for (let d of departments) {
+            LIST.set(d, []);
+        }
+      }
+    });
+  }
   selectDept(department: Department) {
     this.department = department;
   }
   prevDept() {
     if (this.department) {
-      let i = DEPTS.indexOf(this.department);
+      let i = this.departments.indexOf(this.department);
       i--;
       if (i < 0) {
-        i = DEPTS.length - 1;
+        i = this.departments.length - 1;
       }
-      this.department = DEPTS[i];
+      this.department = this.departments[i];
     }
   }
   nextDept() {
     if (this.department) {
-      let i = DEPTS.indexOf(this.department);
+      let i = this.departments.indexOf(this.department);
       i++;
-      if (i > DEPTS.length -1) {
+      if (i > this.departments.length -1) {
         i = 0;
       }
-      this.department = DEPTS[i];
+      this.department = this.departments[i];
     }
   }
   addItem() {

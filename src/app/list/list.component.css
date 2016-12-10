@@ -8,8 +8,11 @@
     text-align: center;
     transform: translate(-50%, 0);
 }
-.deleted {
+.disabled {
     text-decoration: line-through;
+}
+.active-item {
+    font-weight: bold;
 }
 .list-controls {
     position: fixed;

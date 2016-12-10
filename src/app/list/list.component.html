@@ -2,7 +2,7 @@
   <div class="btn-group btn-block mt-1 pt-3" role="group">
     <button type="button" class="btn btn-secondary btn-lg col-xs-2" (click)="prevDept()">&lt;</button>
     <div class="btn-group col-xs-8 no-lr-pad" role="group">
-      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-lg w-100" data-toggle="dropdown">{{department.name}}</button>
+      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-lg w-100" data-toggle="dropdown">{{department?.name}}</button>
       <div class="dropdown-menu drop-down-menu-center">
         <a class="dropdown-item" *ngFor="let department of departments" (click)="selectDept(department)">{{department.name}}</a>
       </div>
@@ -20,5 +20,5 @@
 </div>
 <div class="list-group mt-1 grocery-list pb-1" *ngIf="department">
   <button type="button" class="list-group-item list-group-item-action" *ngFor="let item of list.get(department)" (click)="toggleComplete(department, item)"
-    [class.deleted]="item.deleted">{{item.name}}</button>
+    [class.disabled]="item.deleted" [class.active-item]="!item.deleted">{{item.name}}</button>
 </div>
