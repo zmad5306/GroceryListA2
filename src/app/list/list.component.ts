@@ -32,10 +32,10 @@ export class ListComponent implements OnInit {
       }
     });
   }
-  selectDept(department: Department) {
+  selectDept(department: Department): void {
     this.department = department;
   }
-  prevDept() {
+  prevDept(): void {
     if (this.department) {
       let i = this.departments.indexOf(this.department);
       i--;
@@ -45,7 +45,7 @@ export class ListComponent implements OnInit {
       this.department = this.departments[i];
     }
   }
-  nextDept() {
+  nextDept(): void {
     if (this.department) {
       let i = this.departments.indexOf(this.department);
       i++;
@@ -55,11 +55,11 @@ export class ListComponent implements OnInit {
       this.department = this.departments[i];
     }
   }
-  addItem() {
+  addItem(): void {
     this.list.get(this.department).push({department: this.department, name: this.itemName, deleted: false});
     this.itemName = '';
   }
-  toggleComplete(department: Department, item: Item) {
+  toggleComplete(department: Department, item: Item): void {
     item.deleted = !item.deleted;
     
     // let items: Item[] = this.list.get(department); 
