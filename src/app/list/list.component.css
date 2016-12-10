@@ -21,8 +21,11 @@
     background-color: #373a3c;
 }
 .grocery-list {
-    padding-top: 7rem;
+    padding-top: 10.5rem;
 }
 .list-group-item {
     font-size: 200%;
+}
+.btn-toolbar-center {
+    margin: 0 auto;
 }

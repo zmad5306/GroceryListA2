@@ -3,7 +3,7 @@
     <div class="input-group input-group-lg">
       <input type="text" class="form-control" placeholder="Department name..." [(ngModel)]="departmentName">
       <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button" (click)="addDepartment()">Add</button>
+        <button class="btn btn-secondary" type="button" (click)="addDepartment()" [disabled]="!departmentName">Add</button>
       </span>
     </div>
   </div>

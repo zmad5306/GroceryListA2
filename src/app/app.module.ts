@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { DepartmentsComponent } from './departments/departments.component';
 
-import { DepartmentService } from './department.service';
-
 const routes: Routes = [
   { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: 'list', component: ListComponent },
@@ -30,7 +28,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     NgbModule.forRoot()
   ],
-  providers: [DepartmentService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
