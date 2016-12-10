@@ -1,0 +1,25 @@
+.no-lr-pad {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.drop-down-menu-center {
+    left: 50%;
+    right: auto;
+    text-align: center;
+    transform: translate(-50%, 0);
+}
+.deleted {
+    text-decoration: line-through;
+}
+.list-controls {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1029;
+    display: block;
+    background-color: #373a3c;
+}
+.grocery-list {
+    padding-top: 7rem;
+}
