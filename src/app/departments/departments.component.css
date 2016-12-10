@@ -1,0 +1,12 @@
+.department-controls {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1029;
+    display: block;
+    background-color: #373a3c;
+}
+.department-list {
+    padding-top: 3.5rem;
+}

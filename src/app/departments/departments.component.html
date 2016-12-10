@@ -1,3 +1,25 @@
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let department of departments">{{department.name}}</li>
-</ul>
+<div class="department-controls pl-1 pr-1 pb-1 pt-3">
+  <div class="mt-1 w-100">
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control" placeholder="Department name..." [(ngModel)]="departmentName">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" (click)="addDepartment()">Add</button>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="list-group mt-1 department-list pb-1">
+  <button type="button" class="list-group-item list-group-item-action" *ngFor="let department of departments" (click)="openConfirmDeleteModal(confirmDeleteModal, department)">{{department.name}}</button>
+</div>
+<template #confirmDeleteModal let-c="close" let-d="dismiss" ngbModalContainer>
+  <div class="modal-header">
+    <h4 class="modal-title">Are you sure?</h4>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete the {{department.name}} department?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('yes')">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="c('no')">No</button>
+  </div>
+</template>

@@ -22,4 +22,9 @@ export class DepartmentService {
     return Promise.resolve(this.departments);
   }
 
+  addDepartment(department: Department): Promise<void> {
+    this.departments.push(department);
+    return Promise.resolve();
+  } 
+
 }
