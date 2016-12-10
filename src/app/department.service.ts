@@ -7,8 +7,20 @@ const DEPTS: Department[] = [
   {name: 'Frozen'},
   {name: 'Bread'},
   {name: 'Coffee/Tea'},
+  {name: 'Condiments'},
+  {name: 'Canned'},
+  {name: 'Baking'},
+  {name: 'Snacks'},
+  {name: 'Beverages'},
   {name: 'Meat'},
-  {name: 'Dairy'}
+  {name: 'Dairy'},
+  {name: 'Deli'},
+  {name: 'Houshold'},
+  {name: 'Kids'},
+  {name: 'Pharmacy'},
+  {name: 'Personal Care'},
+  {name: 'Hardware'},
+  {name: 'Housewares'}
 ];
 
 @Injectable()
