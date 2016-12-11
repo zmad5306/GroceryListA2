@@ -1,10 +1,10 @@
 <div class="list-controls pl-1 pr-1 pb-1">
   <div class="btn-group btn-block mt-1 pt-3" role="group">
     <button type="button" class="btn btn-secondary btn-lg col-xs-2" (click)="prevDept()">&lt;</button>
-    <div class="btn-group col-xs-8 no-lr-pad" role="group">
-      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn-lg w-100" data-toggle="dropdown">{{department?.name}}</button>
-      <div class="dropdown-menu drop-down-menu-center">
-        <a class="dropdown-item" *ngFor="let department of departments" (click)="selectDept(department)">{{department.name}}</a>
+    <div ngbDropdown class="btn-group col-xs-8 no-lr-pad" role="group">
+      <button class="btn btn-secondary dropdown-toggle btn-lg w-100" id="dropdownMenu1" ngbDropdownToggle>{{department?.name}}</button>
+      <div class="dropdown-menu drop-down-menu-center" aria-labelledby="dropdownMenu1">
+        <button class="dropdown-item" *ngFor="let department of departments" (click)="selectDept(department)">{{department.name}}</button>
       </div>
     </div>
     <button type="button" class="btn btn-secondary btn-lg col-xs-2" (click)="nextDept()">&gt;</button>
