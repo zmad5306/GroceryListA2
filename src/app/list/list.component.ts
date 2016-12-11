@@ -43,8 +43,7 @@ export class ListComponent implements OnInit {
       if (i < 0) {
         i = this.departments.length - 1;
       }
-      this.department = this.departments[i];
-      this.listService.getItems(this.department).then((items: Item[]) => this.items = items);
+      this.selectDept(this.departments[i]);
     }
   }
   nextDept(): void {
@@ -54,8 +53,7 @@ export class ListComponent implements OnInit {
       if (i > this.departments.length -1) {
         i = 0;
       }
-      this.department = this.departments[i];
-      this.listService.getItems(this.department).then((items: Item[]) => this.items = items);
+      this.selectDept(this.departments[i]);
     }
   }
   addItem(): void {
