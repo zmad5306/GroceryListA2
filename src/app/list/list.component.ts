@@ -31,10 +31,12 @@ export class ListComponent implements OnInit {
       }
     });
   }
+
   selectDept(department: Department): void {
     this.department = department;
     this.listService.getItems(department).then((items: Item[]) => this.items = items);
   }
+
   prevDept(): void {
     if (this.department) {
       let i = this.departments.indexOf(this.department);
@@ -45,6 +47,7 @@ export class ListComponent implements OnInit {
       this.selectDept(this.departments[i]);
     }
   }
+
   nextDept(): void {
     if (this.department) {
       let i = this.departments.indexOf(this.department);
@@ -55,13 +58,16 @@ export class ListComponent implements OnInit {
       this.selectDept(this.departments[i]);
     }
   }
+
   addItem(): void {
     this.listService.addItem({department: this.department, name: this.itemName, completed: false});
     this.itemName = '';
   }
+
   toggleComplete(item: Item): void {
     this.listService.toggleComplete(item);
   }
+
   openConfirmClearAllModal(confirmClearAllModal): void {
     this.modalService.open(confirmClearAllModal).result.then((result) => {
       if ('yes' === result) {
@@ -69,6 +75,7 @@ export class ListComponent implements OnInit {
       }
     });
   }
+
   openConfirmClearModal(confirmClearModal): void {
     this.modalService.open(confirmClearModal).result.then((result) => {
       if ('yes' === result) {
@@ -76,6 +83,7 @@ export class ListComponent implements OnInit {
       }
     });
   }
+
   openConfirmCompleteAllModal(confirmCompleteAllModal): void {
     this.modalService.open(confirmCompleteAllModal).result.then((result) => {
       if ('yes' === result) {
@@ -83,6 +91,7 @@ export class ListComponent implements OnInit {
       }
     });
   }
+
   openConfirmCompleteModal(confirmCompleteModal): void {
     this.modalService.open(confirmCompleteModal).result.then((result) => {
       if ('yes' === result) {
@@ -90,4 +99,5 @@ export class ListComponent implements OnInit {
       }
     });
   }
+  
 }
