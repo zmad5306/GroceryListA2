@@ -1,0 +1,17 @@
+.nav-link {
+    color: #ffffff;
+}
+.right-tabs {
+    float: right;
+    border-bottom: 0px;
+}
+.right-tabs .nav li {
+    float: left
+}
+.selected-tab {
+    border-color: #eceeef #eceeef #ddd;
+}
+.nav-tabs .nav-link {
+    border-bottom-left-radius: .25em;
+    border-bottom-right-radius: .25em;
+}

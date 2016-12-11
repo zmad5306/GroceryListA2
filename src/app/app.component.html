@@ -1,13 +1,15 @@
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
   <a class="navbar-brand" routerLink="/list">Grocery List</a>
-  <ul class="nav navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" routerLink="/list">List</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/departments">Departments</a>
-    </li>
+  
+    <ul class="nav nav-tabs right-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [routerLinkActive]="['selected-tab']" routerLink="/list">List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLinkActive]="['selected-tab']" routerLink="/departments">Departments</a>
+      </li>
   </ul>
+  
 </nav>
 <div class="container">
     <router-outlet></router-outlet>
