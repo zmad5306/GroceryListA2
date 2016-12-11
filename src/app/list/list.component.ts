@@ -26,7 +26,6 @@ export class ListComponent implements OnInit {
     this.departmentService.getDepartments().then((departments) => {
       this.departments = departments;
       if (this.departments.length > 0) {
-    
         this.department = departments[0];
         this.listService.getItems(departments[0]).then((items: Item[]) => this.items = items);
       }
