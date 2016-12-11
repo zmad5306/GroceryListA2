@@ -23,7 +23,7 @@
   </div>
   <div class="mt-1 w-100">
     <div class="input-group input-group-lg">
-      <input type="text" class="form-control" placeholder="Item name..." [(ngModel)]="itemName">
+      <input type="text" class="form-control" placeholder="Item name..." [(ngModel)]="itemName" (keyup.enter)="itemName && addItem()">
       <span class="input-group-btn">
         <button class="btn btn-secondary" type="button" (click)="addItem()" [disabled]="!itemName">Add</button>
       </span>

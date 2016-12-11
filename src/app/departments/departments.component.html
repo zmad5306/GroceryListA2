@@ -1,7 +1,7 @@
 <div class="department-controls pl-1 pr-1 pb-1 pt-3">
   <div class="mt-1 w-100">
     <div class="input-group input-group-lg">
-      <input type="text" class="form-control" placeholder="Department name..." [(ngModel)]="departmentName">
+      <input type="text" class="form-control" placeholder="Department name..." [(ngModel)]="departmentName" (keyup.enter)="departmentName && addDepartment()">
       <span class="input-group-btn">
         <button class="btn btn-secondary" type="button" (click)="addDepartment()" [disabled]="!departmentName">Add</button>
       </span>
