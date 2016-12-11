@@ -16,8 +16,8 @@
         <button type="button" class="btn btn-secondary" (click)="openConfirmClearModal(confirmClearModal)">Clear Dept.</button>
       </div>
       <div class="btn-group btn-group-sm ml-1 mr-1" role="group">
-        <button type="button" class="btn btn-secondary" (click)="openConfirmMarkAllModal(confirmMarkAllModal)">All Done</button>
-        <button type="button" class="btn btn-secondary" (click)="openConfirmMarkModal(confirmMarkModal)">Dept. Done</button>
+        <button type="button" class="btn btn-secondary" (click)="openConfirmCompleteAllModal(confirmCompleteAllModal)">All Done</button>
+        <button type="button" class="btn btn-secondary" (click)="openConfirmCompleteModal(confirmCompleteModal)">Dept. Done</button>
       </div>
     </div>
   </div>
@@ -31,8 +31,8 @@
   </div>
 </div>
 <div class="list-group mt-1 grocery-list pb-1" *ngIf="department">
-  <button type="button" class="list-group-item list-group-item-action" *ngFor="let item of list" (click)="toggleComplete(item)"
-    [class.disabled]="item.deleted">{{item.name}}</button>
+  <button type="button" class="list-group-item list-group-item-action" *ngFor="let item of items" (click)="toggleComplete(item)"
+    [class.disabled]="item.completed">{{item.name}}</button>
 </div>
 <template #confirmClearAllModal let-c="close" let-d="dismiss" ngbModalContainer>
   <div class="modal-header">
@@ -58,7 +58,7 @@
     <button type="button" class="btn btn-secondary" (click)="c('no')">No</button>
   </div>
 </template>
-<template #confirmMarkAllModal let-c="close" let-d="dismiss" ngbModalContainer>
+<template #confirmCompleteAllModal let-c="close" let-d="dismiss" ngbModalContainer>
   <div class="modal-header">
     <h4 class="modal-title">Are you sure?</h4>
   </div>
@@ -70,7 +70,7 @@
     <button type="button" class="btn btn-secondary" (click)="c('no')">No</button>
   </div>
 </template>
-<template #confirmMarkModal let-c="close" let-d="dismiss" ngbModalContainer>
+<template #confirmCompleteModal let-c="close" let-d="dismiss" ngbModalContainer>
   <div class="modal-header">
     <h4 class="modal-title">Are you sure?</h4>
   </div>

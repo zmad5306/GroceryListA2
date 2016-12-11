@@ -5,41 +5,36 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Department } from '../department';
 import { Item } from '../item';
 import { DepartmentService } from '../department.service';
-
-const LIST = new Map<Department, Item[]>();
+import { ListService } from '../list.service';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css'],
-  providers: [DepartmentService]
+  providers: [DepartmentService, ListService]
 })
 export class ListComponent implements OnInit {
 
-  list: Item[];
+  items: Item[];
   department: Department;
   departments: Department[];
   itemName: string;
 
-  constructor(private departmentService: DepartmentService, private modalService: NgbModal) { }
+  constructor(private departmentService: DepartmentService, private listService: ListService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.departmentService.getDepartments().then((departments) => {
       this.departments = departments;
       if (this.departments.length > 0) {
-        for (let d of departments) {
-          if (!LIST.get(d)) {
-            LIST.set(d, []);
-          }
-        }
+    
         this.department = departments[0];
-        this.list = LIST.get(departments[0]);
+        this.listService.getItems(departments[0]).then((items: Item[]) => this.items = items);
       }
     });
   }
   selectDept(department: Department): void {
     this.department = department;
-    this.list = LIST.get(department);
+    this.listService.getItems(department).then((items: Item[]) => this.items = items);
   }
   prevDept(): void {
     if (this.department) {
@@ -49,7 +44,7 @@ export class ListComponent implements OnInit {
         i = this.departments.length - 1;
       }
       this.department = this.departments[i];
-      this.list = LIST.get(this.department);
+      this.listService.getItems(this.department).then((items: Item[]) => this.items = items);
     }
   }
   nextDept(): void {
@@ -60,41 +55,41 @@ export class ListComponent implements OnInit {
         i = 0;
       }
       this.department = this.departments[i];
-      this.list = LIST.get(this.department);
+      this.listService.getItems(this.department).then((items: Item[]) => this.items = items);
     }
   }
   addItem(): void {
-    this.list.push({department: this.department, name: this.itemName, deleted: false});
+    this.listService.addItem({department: this.department, name: this.itemName, completed: false});
     this.itemName = '';
   }
   toggleComplete(item: Item): void {
-    item.deleted = !item.deleted;
+    this.listService.toggleComplete(item);
   }
   openConfirmClearAllModal(confirmClearAllModal): void {
     this.modalService.open(confirmClearAllModal).result.then((result) => {
       if ('yes' === result) {
-        LIST.forEach((items: Item[]) => items.splice(0, items.length));
+        this.listService.removeAllItems();
       }
     });
   }
   openConfirmClearModal(confirmClearModal): void {
     this.modalService.open(confirmClearModal).result.then((result) => {
       if ('yes' === result) {
-        this.list.splice(0, this.list.length);
+        this.listService.removeItems(this.department);
       }
     });
   }
-  openConfirmMarkAllModal(confirmMarkAllModal): void {
-    this.modalService.open(confirmMarkAllModal).result.then((result) => {
+  openConfirmCompleteAllModal(confirmCompleteAllModal): void {
+    this.modalService.open(confirmCompleteAllModal).result.then((result) => {
       if ('yes' === result) {
-        LIST.forEach((items: Item[]) => items.forEach((item: Item) => item.deleted = true));
+        this.listService.completeAllItems();
       }
     });
   }
-  openConfirmMarkModal(confirmMarkModal): void {
-    this.modalService.open(confirmMarkModal).result.then((result) => {
+  openConfirmCompleteModal(confirmCompleteModal): void {
+    this.modalService.open(confirmCompleteModal).result.then((result) => {
       if ('yes' === result) {
-        this.list.forEach((item: Item) => item.deleted = true);
+        this.listService.completeItems(this.department);
       }
     });
   }
