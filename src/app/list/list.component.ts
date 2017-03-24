@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
   departments: Department[];
   itemName: string;
 
-  constructor(private departmentService: DepartmentService, private listService: ListService, private modalService: NgbModal) { }
+  constructor(private departmentService: DepartmentService, private listService: ListService, private modalService: NgbModal) {}
 
   ngOnInit() {
     this.departmentService.getDepartments().then((departments) => {

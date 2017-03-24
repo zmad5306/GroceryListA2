@@ -12,13 +12,7 @@ import { AppComponent } from './app.component';
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    NgbModule.forRoot(),
-    appRoutes
-  ],
+  imports: [NgbModule.forRoot(), BrowserModule, FormsModule, HttpModule, appRoutes],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
