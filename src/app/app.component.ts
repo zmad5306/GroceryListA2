@@ -7,4 +7,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+  navs = [
+    {url: "list", content: "List"},
+    {url: "departments", content: "Departments"},
+  ];
+}

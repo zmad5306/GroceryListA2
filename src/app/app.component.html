@@ -2,11 +2,8 @@
   <a class="navbar-brand" routerLink="/list">Grocery List</a>
   
     <ul class="nav nav-tabs right-tabs">
-      <li class="nav-item">
-        <a class="nav-link" [routerLinkActive]="['selected-tab']" routerLink="list">List</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLinkActive]="['selected-tab']" routerLink="departments">Departments</a>
+      <li class="nav-item" *ngFor="let nav of navs">
+        <a class="nav-link" [routerLinkActive]="['selected-tab']" [routerLink]="nav.url" [routerLinkActiveOptions]="{exact:true}">{{nav.content}}</a>
       </li>
   </ul>
   
