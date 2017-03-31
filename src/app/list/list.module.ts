@@ -10,4 +10,4 @@ import listRoutes from "./list.routes";
     imports: [NgbModule, CommonModule, listRoutes, FormsModule],
     declarations: [ListComponent]
 })
-export default class ListModule{}
+export class ListModule{}

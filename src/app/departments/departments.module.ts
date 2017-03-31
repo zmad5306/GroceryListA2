@@ -10,4 +10,4 @@ import departmentRoutes from "./departments.routes";
     imports: [NgbModule, CommonModule, departmentRoutes, FormsModule],
     declarations: [DepartmentsComponent]
 })
-export default class DepartmentsModule{}
+export class DepartmentsModule{}
